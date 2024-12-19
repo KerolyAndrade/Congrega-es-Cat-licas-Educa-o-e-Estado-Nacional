@@ -1,0 +1,14 @@
+{
+  "name": "Laravel Codespace",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "bmewburn.vscode-intelephense-client",
+    "junstyle.php-cs-fixer",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ],
+  "postCreateCommand": "composer install && php artisan migrate --seed"
+}
