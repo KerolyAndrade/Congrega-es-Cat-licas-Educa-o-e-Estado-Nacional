@@ -1,11 +1,8 @@
-
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pesquisa-2-app
     ports:
       - "9000:9000"
     networks:
