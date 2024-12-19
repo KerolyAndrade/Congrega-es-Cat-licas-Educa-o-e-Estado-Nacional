@@ -4,21 +4,21 @@
     "service": "app",
     "workspaceFolder": "/workspace",
     "customizations": {
-        "vscode": {
-            "settings": {
-                "terminal.integrated.defaultProfile.linux": "bash",
-                "php.validate.executablePath": "/usr/local/bin/php"
-            },
-            "extensions": [
-                "ms-azuretools.vscode-docker",
-                "bmewburn.vscode-intelephense-client",
-                "mehedidracula.php-namespace-resolver",
-                "EditorConfig.EditorConfig"
-            ]
-        }
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash",
+          "php.validate.executablePath": "/usr/local/bin/php"
+        },
+        "extensions": [
+          "ms-azuretools.vscode-docker",
+          "bmewburn.vscode-intelephense-client",
+          "mehedidracula.php-namespace-resolver",
+          "EditorConfig.EditorConfig"
+        ]
+      }
     },
     "mounts": [
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+      "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
     ]
-}
-
+  }
+  

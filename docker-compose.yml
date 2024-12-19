@@ -5,35 +5,23 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel-app
+    image: pesquisa-2-app
     ports:
-      - "8000:8000"
-    volumes:
-      - .:/var/www/html
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - APP_KEY=base64:YOUR_APP_KEY
-      - DB_CONNECTION=pgsql
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_DATABASE=laravel
-      - DB_USERNAME=laravel_user
-      - DB_PASSWORD=secret
-    depends_on:
-      - db
+      - "9000:9000"
+    networks:
+      - laravel
 
-  db:
+  postgres:
     image: postgres:15
-    container_name: postgres-db
-    volumes:
-      - db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: laravel_user
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: laravel
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
     ports:
       - "5432:5432"
+    networks:
+      - laravel
 
-volumes:
-  db_data:
+networks:
+  laravel:
+    driver: bridge
