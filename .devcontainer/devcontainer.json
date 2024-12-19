@@ -12,5 +12,8 @@
     "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "php.validate.executablePath": "/usr/local/bin/php"
+    },
+    "features": {
+          "docker-in-docker": {"version": "latest"}
     }
 }
