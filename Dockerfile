@@ -1,4 +1,4 @@
-# Use uma imagem do PHP com suporte ao Laravel
+# Use uma imagem base do PHP com suporte ao Laravel
 FROM php:8.2-fpm
 
 # Instalar extensões necessárias
@@ -11,16 +11,19 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copiar os arquivos do projeto
-WORKDIR /var/www/html
+# Configurar diretório de trabalho
+WORKDIR /workspace
+
+# Copiar os arquivos do projeto (ajustado para usar o .dockerignore)
 COPY . .
 
-# Configurar permissões
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Configurar permissões (ajustado para evitar conflitos com Codespaces)
+RUN chown -R www-data:www-data /workspace \
+    && chmod -R 775 /workspace/storage /workspace/bootstrap/cache
 
-# Instalar dependências do Laravel
-RUN composer install --optimize-autoloader --no-dev
-
+# Expor a porta para o PHP-FPM
 EXPOSE 9000
+
+# Comando inicial
 CMD ["php-fpm"]
+
