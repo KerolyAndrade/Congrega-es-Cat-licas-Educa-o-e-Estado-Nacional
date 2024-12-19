@@ -1,6 +1,6 @@
 {
     "name": "Laravel Codespace",
-    "dockerComposeFile": ["../docker-compose.yml"],
+    "dockerComposeFile": ["docker-compose.yml"],
     "service": "app",
     "workspaceFolder": "/workspace",
     "extensions": [
@@ -13,7 +13,7 @@
         "terminal.integrated.defaultProfile.linux": "bash",
         "php.validate.executablePath": "/usr/local/bin/php"
     },
-    "features": {
-          "docker-in-docker": {"version": "latest"}
-    }
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
 }
