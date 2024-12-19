@@ -11,11 +11,17 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Instalar o Supervisor para gerenciar o processo do PHP-FPM
+RUN apt-get install -y supervisor
+
 # Configurar diretório de trabalho
 WORKDIR /workspace
 
 # Copiar os arquivos do projeto (ajustado para usar o .dockerignore)
 COPY . .
+
+# Criar as pastas storage e bootstrap/cache caso não existam
+RUN mkdir -p /workspace/storage /workspace/bootstrap/cache
 
 # Configurar permissões (ajustado para evitar conflitos com Codespaces)
 RUN chown -R www-data:www-data /workspace \
@@ -26,4 +32,3 @@ EXPOSE 9000
 
 # Comando inicial
 CMD ["php-fpm"]
-
